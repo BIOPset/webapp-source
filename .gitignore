@@ -1,0 +1,8 @@
+# dependencies
+biop5/node_modules
+
+# testing
+biop5/coverage
+
+# production
+biop5/build
