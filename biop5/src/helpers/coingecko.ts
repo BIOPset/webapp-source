@@ -9,8 +9,8 @@ export async function currentEthPriceInUSD() {
     return data.ethereum.usd;
 }
 
-export async function ethPriceDataInUsd(days: number, interval: string) {
-    const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=${days}&interval=${interval}`);
+export async function coinPriceDataInUsd(coin: string, days: number, interval: string) {
+    const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${days}&interval=${interval}`);
 
     // tslint:disable-next-line:no-console
     console.log("axios retrb");

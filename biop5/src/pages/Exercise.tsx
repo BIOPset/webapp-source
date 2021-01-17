@@ -1,8 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 import { getOptionsAndCloses, sendExpire, sendExercise, getLatestPrice, blockTimestamp } from "../helpers/web3";
+import {add, floorDivide} from '../helpers/bignumber';
 
-
+import OptionVis from 'src/components/OptionVis';
 import OptionTable from 'src/components/OptionTable';
 import Loading from 'src/components/Loading';
 import { colors } from 'src/styles';
@@ -32,6 +33,11 @@ interface IExerciseState {
     currentPrice: number;
     priceInterval: any;
     optionsInterval: any;
+    calls: number;
+    puts: number;
+    exercised: number;
+    expired: number;
+    avgValue: number;
 }
 
 const INITIAL_STATE: IExerciseState = {
@@ -43,7 +49,14 @@ const INITIAL_STATE: IExerciseState = {
     options: [],
     currentPrice: 0,
     priceInterval: null,
-    optionsInterval: null
+    optionsInterval: null,
+
+    // used for snapshot visualization
+    calls: 0,
+    puts: 0,
+    exercised: 0,
+    expired: 0,
+    avgValue: 0
 };
 class Exercise extends React.Component<any, any> {
     // @ts-ignore
@@ -142,14 +155,36 @@ class Exercise extends React.Component<any, any> {
         console.log(`sorted $`);
         // tslint:disable-next-line:no-console
         console.log(sorted);
+        let calls = 0;
+        let puts = 0;
+        let exercised = 0;
+        let expired = 0;
+        let avgValue: any = 0;
         const sortedOptions: any = [];
         sorted.forEach((id: any) => {
+            if (optionsObjects[id].type === "1") {
+                calls += 1;
+            } else {
+                puts += 1;
+            }
+            if (optionsObjects[id].exercised) {
+                exercised += 1;
+            } else if (optionsObjects[id].expired) {
+                expired += 1;
+            }
+            avgValue = add(avgValue, optionsObjects[id].lockedValue);
             sortedOptions.push(optionsObjects[id]);
         });
 
         // tslint:disable-next-line:no-console
+        console.log(`totalValue ${avgValue}`);
+        avgValue = floorDivide(avgValue, sorted.length);
+        // tslint:disable-next-line:no-console
+        console.log(`avgValue ${avgValue}`);
+
+        // tslint:disable-next-line:no-console
         console.log(sortedOptions);
-        this.setState({ options: sortedOptions })
+        this.setState({ options: sortedOptions, calls, puts, exercised, expired, avgValue })
     }
 
 
@@ -193,7 +228,7 @@ class Exercise extends React.Component<any, any> {
 
 
     public render() {
-        const { pendingRequest, error, web3, options, currentPrice } = this.state;
+        const { avgValue, calls, puts, exercised, expired, pendingRequest, error, web3, options, currentPrice } = this.state;
         return (
             <SStake>
 
@@ -204,6 +239,7 @@ class Exercise extends React.Component<any, any> {
                     pendingRequest ?
                         <Loading />
                         :
+                        <>
                         <OptionTable
                             showFee={true}
                             web3={web3}
@@ -212,6 +248,14 @@ class Exercise extends React.Component<any, any> {
                             handleExercise={(optionId: any) => this.handleExercise(optionId)}
                             currentPrice={currentPrice}
                         />
+                        <OptionVis
+                            calls={calls}
+                            puts={puts}
+                            exercised={exercised}
+                            expired={expired}
+                            avgValue={web3.utils.fromWei(`${avgValue}`, "ether")}
+                        />
+                        </>
                 }
 
 

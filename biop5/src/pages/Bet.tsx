@@ -6,6 +6,8 @@ import { sendExercise, sendExpire, callPoolTotalSupply, getLatestPrice, callPool
 // import Right from "../assets/right.png";
 import { makeBet } from "../helpers/web3";
 
+import { enabledPricePairs } from "../constants";
+
 import Column from 'src/components/Column';
 import OptionTable from 'src/components/OptionTable';
 import BetButton from 'src/components/BetButton';
@@ -111,7 +113,7 @@ interface IBetState {
     amountToWin: any;
     maxBet: number;
     hasBet: boolean;
-    pair: string;
+    pair: any;
     timeFrame: number;
     userOptions: any;
     currentPrice: number;
@@ -130,7 +132,7 @@ const INITIAL_STATE: IBetState = {
     maxBet: 0,
     amountToWin: 0,
     hasBet: false,
-    pair: "ETH/USD",
+    pair: enabledPricePairs[0],
     timeFrame: 60 * 60,
     userOptions: [],
     currentPrice: 0,
@@ -216,8 +218,8 @@ class Bet extends React.Component<any, any> {
             console.log(`found option #1 ${completeEvents[i].returnValues}`);
             // tslint:disable-next-line:no-console
             console.log(completeEvents[i]);
-            
-            
+
+
             if (completeEvents[i].returnValues) {
                 if (massagedOptions[completeEvents[i].returnValues.id] !== undefined) {
                     massagedOptions[options[i].returnValues.id].complete = true;
@@ -262,11 +264,6 @@ class Bet extends React.Component<any, any> {
         this.setState({ totalStaked, staked, maxBet });
     }
 
-
-    public async setPair(pair: string) {
-        this.setState({ pair });
-    }
-
     public async handleBetAmountUpdate(e: any) {
         const { chainId, web3, maxBet } = this.state;
         const newBet = e.target.value.split(" ");
@@ -285,12 +282,12 @@ class Bet extends React.Component<any, any> {
 
 
     public async handleMakeBet(direction: boolean) {
-        const { betAmount, web3, chainId, address, timeFrame } = this.state;
+        const { betAmount, web3, chainId, address, timeFrame, pair } = this.state;
         // tslint:disable-next-line:no-console
         console.log(`makeBet 1`);
         this.setState({ pendingRequest: true, lastBetCall: direction });
         try {
-            await makeBet(address, web3.utils.toWei(`${betAmount}`, "ether"), direction, timeFrame, chainId, web3, (param1: any, param2: any) => {
+            await makeBet(address, web3.utils.toWei(`${betAmount}`, "ether"), direction, timeFrame, pair.address, chainId, web3, (param1: any, param2: any) => {
                 // tslint:disable-next-line:no-console
                 console.log(`makeBet ${param1} maxBet`);
                 // tslint:disable-next-line:no-console
@@ -371,11 +368,24 @@ class Bet extends React.Component<any, any> {
 
     public renderPairSelect() {
         const { pair } = this.state;
-        const ETHUSD = "ETH/USD";
         return (
-            <SSelect>
-                <option selected={pair === ETHUSD} onClick={() => this.setPair(ETHUSD)} value={ETHUSD}>ETH/USD</option>
-                <option disabled onClick={() => this.setPair("WBTC/USD")} value="WBTC/USD">MORE SOON</option>
+            <SSelect onChange={(e) => {
+
+                // tslint:disable-next-line:no-console
+                console.log(`type ${typeof (e.target.value)}`);
+                this.setState({
+                    pair: JSON.parse(e.target.value)
+                })
+            }}>
+                {enabledPricePairs.map((nPair: any) => {
+                    return <option
+                        key={nPair.pair}
+                        selected={pair === nPair}
+                        value={JSON.stringify(nPair)}>
+                        {nPair.pair}
+                    </option>
+                })}
+                <option disabled value="MORE SOON">MORE SOON</option>
             </SSelect>
         )
 
@@ -419,23 +429,24 @@ class Bet extends React.Component<any, any> {
 
 
     public renderBetApprove() {
-        const { betAmount, web3 } = this.state;
-        if (betAmount > 0) {
+        const { web3, pair } = this.state;
 
-            return (
-                <SBetter>
-                    <PriceChart web3={web3} />
-                    <SBetButtonContainer>
-                        <BetButton up={true} onClick={() => { this.handleMakeBet(true) }} />
-                        <BetButton up={false} onClick={() => { this.handleMakeBet(false) }} />
-                    </SBetButtonContainer>
+                // tslint:disable-next-line:no-console
+                console.log(`rerender chart with pair ${pair}`);
+                // tslint:disable-next-line:no-console
+                console.log(pair);
+        return (
+            <SBetter>
+                <PriceChart web3={web3} pair={pair} />
+                <SBetButtonContainer>
+                    <BetButton up={true} onClick={() => { this.handleMakeBet(true) }} />
+                    <BetButton up={false} onClick={() => { this.handleMakeBet(false) }} />
+                </SBetButtonContainer>
 
-                </SBetter>
-            )
+            </SBetter>
+        )
 
-        } else {
-            return (<></>)
-        }
+
     }
 
 
@@ -462,20 +473,20 @@ class Bet extends React.Component<any, any> {
                             {this.renderBetApprove()}
                         </SInterface>
                 }
-                   {
+                {
                     hasBet ?
-                    <SHelper>Share your option with the world: 
-                        <a 
-                        href={`I%20just%20bought%20a%20binary%20${lastBetCall ? "Call📈" : "Put📉"}%20option%20on%20%40biopset!%20%0A%0AThink%20you%20can%20pick%20the%20price%20direction%3F%0Abiopset.com%20%0A%0AWanna%20make%20money%3F%20%0AHit%20the%20exercise%20tab%20and%20score%20some%20risk%20free%20%23ETH%0A%0A%23binaryoptions%20%23defi%20%23ethereum%20`} 
-                        className="twitter-share-button" target="_" >
-                        <b>TWEET it🐧!</b></a>
-                    </SHelper>
+                        <SHelper>Share your option with the world:
+                        <a
+                                href={`https://twitter.com/share?ref_src=twsrc%5Etfw&text=I%20bought%20a%20binary%20${lastBetCall ? "Call📈" : "Put📉"}%20option%20on%20%40biopset!%20%0A%0AThink%20you%20can%20pick%20the%20price%20direction%3F%0Abiopset.com%20%0A%0AWanna%20make%20money%3F%20%0AHit%20the%20exercise%20tab%20and%20score%20some%20risk%20free%20%23ETH%0A%0A%23binaryoptions%20%23defi%20%23ethereum%20`}
+                                className="twitter-share-button" target="_" >
+                                <b>TWEET it🐧!</b></a>
+                        </SHelper>
 
                         : <>
                             <h4><u>Rules:</u></h4>
                             <ul><li>- A 0.2% fee is charged for each bet</li></ul>
                         </>
-                } 
+                }
                 <br />
                 <h4>Your Options:</h4>
                 <br />

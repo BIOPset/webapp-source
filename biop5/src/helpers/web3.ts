@@ -308,17 +308,13 @@ export function getDefaultPriceProvider( chainId: number, web3: any) {
 
 
 // binary options functions
-export function makeBet(address: string, amount: string, callOption: boolean, time: number, chainId: number, web3: any, onComplete: any) {
+export function makeBet(address: string, amount: string, callOption: boolean, time: number, priceProvider: string, chainId: number, web3: any, onComplete: any) {
   return new Promise(async(resolve, reject) => {
    
      // tslint:disable-next-line:no-console 
      console.log(`make bet 2  senbt vy ${address}`);
     const pool = getBOContract(chainId, web3);
 
-    // TODO: replace thisx with dynamic input
-    const pp = await getDefaultPriceProvider(chainId, web3);
-    // tslint:disable-next-line:no-console 
-   console.log(`got price provider ${pp}`);
     
 
     const type = callOption ? 1 : 0;
@@ -341,7 +337,7 @@ export function makeBet(address: string, amount: string, callOption: boolean, ti
         // tslint:disable-next-line:no-console
      console.log(`make bet 2  senbt vy ${address}`);
     await pool.methods
-      .bet(type, pp, time)
+      .bet(type, priceProvider, time)
       .send(
         { from: address, value: amount },
         (err: any, data: any) => {

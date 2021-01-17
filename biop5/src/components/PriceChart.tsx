@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Line} from 'react-chartjs-2'
-import { ethPriceDataInUsd } from 'src/helpers/coingecko';
+import { coinPriceDataInUsd } from 'src/helpers/coingecko';
 import { colors } from 'src/styles';
 import styled from 'styled-components'
 import {HOUR, MINUTE} from "src/constants";
@@ -63,11 +63,25 @@ class PriceChart extends React.Component<any, any> {
       clearInterval(this.state.priceInterval);
     }
 
+    public componentDidUpdate(prevProps: any) {
+      if (this.props !== prevProps) {
+        clearInterval(this.state.priceInterval);
+        this.getInitialData();
+        this.setState({
+          priceInterval : setInterval(() => {
+            this.getInitialData()
+        }, 5000)
+        });
+      }
+    }
+
     public async getInitialData() {
       const {timeFrame} = this.state;
+      const {pair} = this.props;
+      
       try {
         this.setState({pendingRequest: true, error: ""});
-        const data = await ethPriceDataInUsd(timeFrame === HOUR ? 3 : 1, timeFrame);
+        const data = await coinPriceDataInUsd(pair.name, timeFrame === HOUR ? 3 : 1, timeFrame);
         // tslint:disable-next-line
         const formattedLabels = [];
         // tslint:disable-next-line
@@ -86,7 +100,7 @@ class PriceChart extends React.Component<any, any> {
           labels: formattedLabels,
           datasets: [
             {
-              label: 'ETH Price',
+              label: `${pair.symbol} Price`,
               fill: false,
               lineTension: 0.1,
               backgroundColor: `rgb(${colors.blue},1)`,
