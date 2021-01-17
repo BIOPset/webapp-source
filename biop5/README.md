@@ -3,7 +3,6 @@
 ## Deploy
 0. set Show Actions in App to false
 1. ```yarn build```
-2. replace ```/webapp``` with "" in ```build/index.html```
 3. ```yarn deploy```
 4. update config on github options
 
