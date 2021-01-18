@@ -128,8 +128,8 @@ const INITIAL_STATE: IBetState = {
     chainId: 1,
     pendingRequest: false,
     error: "",
-    betAmount: 0.01,
-    maxBet: 0,
+    betAmount: 0.1,
+    maxBet: 1,
     amountToWin: 0,
     hasBet: false,
     pair: enabledPricePairs[0],
@@ -156,7 +156,7 @@ class Bet extends React.Component<any, any> {
 
     public componentDidMount() {
         this.getStaked();
-        this.handleBetAmountUpdate({ target: { value: "0.001" } });
+        this.handleBetAmountUpdate({ target: { value: "0.1" } });
         this.loadUserOptions();
 
         this.loadCurrentPrice();

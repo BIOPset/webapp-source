@@ -55,8 +55,13 @@ const OptionTable = (props: any) => {
     function renderFeeOrCost(option: any) {
         const {showFee} = props;
         if (showFee) {
-            return <STh>{web3.utils.fromWei(`${option.lockedValue*0.1}`, "ether")}  ETH</STh>
+            // tslint:disable-next-line:no-console
+            console.log(`showing fee value ${web3.utils.fromWei(`${option.lockedValue*0.005}`, "ether")} ${web3.utils.fromWei(`${option.lockedValue}`, "ether")}`);
+            return <STh>{web3.utils.fromWei(`${option.lockedValue*0.005}`, "ether")}  ETH</STh>
         } else {
+
+            // tslint:disable-next-line:no-console
+            console.log(`showing locked value`);
             return <>
                 <STh>{web3.utils.fromWei(`${option.lockedValue}`, "ether")}  ETH</STh>{/* 
                 <STh>{web3.utils.fromWei(`${option.strikePrice}`, "ether")}  ETH</STh> */}

@@ -234,6 +234,7 @@ class Exercise extends React.Component<any, any> {
 
                 <h1>Exercise</h1>
                 <p>Earn a fee for exercising options ITM or unlocking expired options.</p>
+                <SHelper>Fees shown do not include your Tx cost!</SHelper>
                 <SHelper style={{ color: `rgb(${colors.red})` }}>{error}</SHelper>
                 {
                     pendingRequest ?
