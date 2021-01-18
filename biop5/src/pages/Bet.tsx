@@ -14,7 +14,7 @@ import BetButton from 'src/components/BetButton';
 import Loading from 'src/components/Loading';
 import PriceChart from 'src/components/PriceChart';
 import { colors } from 'src/styles';
-import { convertAmountFromRawNumber, formatFixedDecimals } from 'src/helpers/bignumber';
+import { convertAmountFromRawNumber, formatFixedDecimals, floorDivide } from 'src/helpers/bignumber';
 
 const SBet = styled.div`
     width:100%;
@@ -222,12 +222,12 @@ class Bet extends React.Component<any, any> {
 
             if (completeEvents[i].returnValues) {
                 if (massagedOptions[completeEvents[i].returnValues.id] !== undefined) {
-                    massagedOptions[options[i].returnValues.id].complete = true;
+                    massagedOptions[completeEvents[i].returnValues.id].complete = true;
                     if (completeEvents[i].event === "Expire") {
-                        massagedOptions[options[i].returnValues.id].expired = true;
+                        massagedOptions[completeEvents[i].returnValues.id].expired = true;
                     }
                     if (completeEvents[i].event === "Exercise") {
-                        massagedOptions[options[i].returnValues.id].exercised = true;
+                        massagedOptions[completeEvents[i].returnValues.id].exercised = true;
                     }
                 }
             }
@@ -394,7 +394,7 @@ class Bet extends React.Component<any, any> {
 
 
     public renderInput() {
-        const { betAmount, amountToWin } = this.state;
+        const { betAmount, amountToWin, currentPrice, web3 } = this.state;
         return (
             <Column>
                 <SInputContainer>
@@ -414,6 +414,7 @@ class Bet extends React.Component<any, any> {
                                 // tslint:disable-next-line:no-console
                                 console.log(e);
                             }} />
+                            <SHelper style={{ paddingTop: "0px", marginTop: "0px" }}>STRIKE PRICE: {formatFixedDecimals(web3.utils.fromWei(floorDivide(currentPrice, 100), "lovelace"), 8)} USD</SHelper>
                     </SInputBbContainer>
 
 
