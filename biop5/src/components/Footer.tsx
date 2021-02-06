@@ -31,7 +31,7 @@ const Footer = (props: any) => (
     {...props}
   >
     <SLinks>
-         <SLink href="https://github.com/BIOPset/gitbook/wiki">Docs</SLink>
+         <SLink href="https://docs.biopset.com/">Docs</SLink>
          <SLink href="https://twitter.com/biopset">Twitter</SLink>
          <SLink href="https://discord.gg/4SRYBNdE3r">Discord</SLink>
      </SLinks>

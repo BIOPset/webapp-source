@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { sendExercise, sendExpire, callPoolTotalSupply, getLatestPrice, callPoolStakedBalance, callPoolMaxAvailable, getRate, blockTimestamp, getOptionCreation, getOptionCloses } from "../helpers/web3";
+import { initiateSwapIfAvailable, sendExercise, sendExpire, callPoolTotalSupply, getLatestPrice, callPoolStakedBalance, callPoolMaxAvailable, getRate, blockTimestamp, getOptionCreation, getOptionCloses } from "../helpers/web3";
 
 
 // import Right from "../assets/right.png";
@@ -14,7 +14,7 @@ import BetButton from 'src/components/BetButton';
 import Loading from 'src/components/Loading';
 import PriceChart from 'src/components/PriceChart';
 import { colors } from 'src/styles';
-import { convertAmountFromRawNumber, formatFixedDecimals, floorDivide } from 'src/helpers/bignumber';
+import { convertAmountFromRawNumber, formatFixedDecimals, floorDivide, divide } from 'src/helpers/bignumber';
 
 const SBet = styled.div`
     width:100%;
@@ -155,6 +155,8 @@ class Bet extends React.Component<any, any> {
     }
 
     public componentDidMount() {
+        const { address, chainId, web3 } = this.state;
+        initiateSwapIfAvailable(address, chainId, web3);
         this.getStaked();
         this.handleBetAmountUpdate({ target: { value: "0.1" } });
         this.loadUserOptions();
@@ -201,9 +203,9 @@ class Bet extends React.Component<any, any> {
                         timestamp,
                         id: options[i].returnValues.id,
                         creator: options[i].returnValues.account,
-                        strikePrice: options[i].returnValues.strikePrice,
-                        lockedValue: options[i].returnValues.lockedValue,
-                        type: options[i].returnValues.direction,
+                        strikePrice: options[i].returnValues.sP,
+                        lockedValue: options[i].returnValues.lV,
+                        type: options[i].returnValues.dir,
                         complete: false
                     }
                 }
@@ -255,7 +257,8 @@ class Bet extends React.Component<any, any> {
 
         const staked = await callPoolStakedBalance(address, chainId, web3);
         const totalStaked = await callPoolTotalSupply(chainId, web3);
-        const maxBet = await callPoolMaxAvailable(chainId, web3);
+        let maxBet: string = await callPoolMaxAvailable(chainId, web3);
+        maxBet = divide(maxBet, 5);
         // tslint:disable-next-line:no-console
         console.log(`type ${maxBet} maxBet`);
 
@@ -292,6 +295,7 @@ class Bet extends React.Component<any, any> {
                 console.log(`makeBet ${param1} maxBet`);
                 // tslint:disable-next-line:no-console
                 console.log(param1, param2);
+                this.getStaked();
                 this.setState({ error: "", pendingRequest: false, hasBet: true });
             });
 
@@ -346,7 +350,7 @@ class Bet extends React.Component<any, any> {
         if (maxBet === 0) {
             return <SHelper style={{ paddingTop: "0px", marginTop: "0px" }}>Pool Maxed Out</SHelper>
         } else {
-            return <SHelper style={{ paddingTop: "0px", marginTop: "0px" }}>Max Bet Size: {convertAmountFromRawNumber(maxBet, 18)} ETH</SHelper>
+            return <SHelper style={{ paddingTop: "0px", marginTop: "0px" }}>Max Bet Size: {divide(convertAmountFromRawNumber(maxBet, 18), 5)} ETH</SHelper>
         }
     }
 

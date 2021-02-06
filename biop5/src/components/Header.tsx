@@ -8,6 +8,14 @@ import { transitions } from '../styles'
 import Nav from './Nav'
 import logo from "../assets/logo.png";
 
+const SBanner = styled.div`
+  top: 0;
+  position: absolute
+  height: 30px;
+  width: 100%;
+  background-color: black;
+  color: white;
+`
 
 const SHeader = styled.div`
   margin-top: -1px;
@@ -97,6 +105,9 @@ const Header = (props: IHeaderProps) => {
   const { connected, address, chainId, killSession, setPage, currentPage } = props
   const chainData = chainId ? getChainData(chainId) : null
   return (
+    <>
+    <SBanner>BIOP V3 is now live!🚀 Looking for v2? <a href="https://biopset-v2.surge.sh" style={{border: "1px solid white"}}>click here</a></SBanner>
+   
     <SHeader {...props}>
       {connected && chainData ? (
         <SActiveChain>
@@ -118,6 +129,7 @@ const Header = (props: IHeaderProps) => {
         </SActiveAccount>
       )}
     </SHeader>
+    </>
   )
   // <SBlockie address={address} />
   // const SAddress = styled.p<IHeaderStyle>`

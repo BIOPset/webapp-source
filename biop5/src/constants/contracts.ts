@@ -236,7 +236,7 @@ export const PRICE_PROVIDER_CONTRACT = {
 // options contract
 export const BO_CONTRACT = {
   1: {
-    address: '0x469B65889Da7fCd5a121BA8Abd589215c769624a',
+    address: '0xEd95e4e0231faa1E641ec00Be4d39c4b5bC09De7',
     "abi": [
       {
         "inputs": [
@@ -311,21 +311,21 @@ export const BO_CONTRACT = {
           },
           {
             "indexed": false,
-            "internalType": "uint256",
-            "name": "strikePrice",
-            "type": "uint256"
+            "internalType": "int256",
+            "name": "sP",
+            "type": "int256"
           },
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "lockedValue",
+            "name": "lV",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "internalType": "enum BinaryOptions.OptionType",
-            "name": "direction",
-            "type": "uint8"
+            "internalType": "bool",
+            "name": "dir",
+            "type": "bool"
           }
         ],
         "name": "Create",
@@ -415,6 +415,26 @@ export const BO_CONTRACT = {
           }
         ],
         "name": "allowance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "altLockedAmount",
         "outputs": [
           {
             "internalType": "uint256",
@@ -552,6 +572,34 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
+        "name": "defaultRCAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "devFund",
+        "outputs": [
+          {
+            "internalType": "address payable",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
         "name": "devFundBetFee",
         "outputs": [
           {
@@ -572,7 +620,27 @@ export const BO_CONTRACT = {
             "type": "address"
           }
         ],
-        "name": "enabledPairs",
+        "name": "ePairs",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "ePools",
         "outputs": [
           {
             "internalType": "bool",
@@ -613,6 +681,40 @@ export const BO_CONTRACT = {
         "constant": true
       },
       {
+        "inputs": [],
+        "name": "fGS",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "iAL",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
         "inputs": [
           {
             "internalType": "address",
@@ -637,8 +739,34 @@ export const BO_CONTRACT = {
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "launchEnd",
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "lST",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "lW",
         "outputs": [
           {
             "internalType": "uint256",
@@ -666,7 +794,7 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "maxTime",
+        "name": "maxT",
         "outputs": [
           {
             "internalType": "uint256",
@@ -680,7 +808,27 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "minTime",
+        "name": "minT",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "nW",
         "outputs": [
           {
             "internalType": "uint256",
@@ -700,26 +848,6 @@ export const BO_CONTRACT = {
             "internalType": "string",
             "name": "",
             "type": "string"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function",
-        "constant": true
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "nextWithdraw",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -751,43 +879,57 @@ export const BO_CONTRACT = {
         "name": "options",
         "outputs": [
           {
-            "internalType": "enum BinaryOptions.State",
-            "name": "state",
-            "type": "uint8"
-          },
-          {
             "internalType": "address payable",
             "name": "holder",
             "type": "address"
           },
           {
+            "internalType": "int256",
+            "name": "sP",
+            "type": "int256"
+          },
+          {
             "internalType": "uint256",
-            "name": "strikePrice",
+            "name": "pV",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "purchaseValue",
+            "name": "lV",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "lockedValue",
+            "name": "exp",
             "type": "uint256"
           },
           {
-            "internalType": "uint256",
-            "name": "expiration",
-            "type": "uint256"
-          },
-          {
-            "internalType": "enum BinaryOptions.OptionType",
-            "name": "optionType",
-            "type": "uint8"
+            "internalType": "bool",
+            "name": "dir",
+            "type": "bool"
           },
           {
             "internalType": "address",
-            "name": "priceProvider",
+            "name": "pP",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "aPA",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address payable",
+            "name": "",
             "type": "address"
           }
         ],
@@ -811,12 +953,26 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "rcAddress",
+        "name": "rewEn",
         "outputs": [
           {
-            "internalType": "address",
+            "internalType": "bool",
             "name": "",
-            "type": "address"
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "reward",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -831,6 +987,20 @@ export const BO_CONTRACT = {
             "internalType": "string",
             "name": "",
             "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tI",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -919,6 +1089,172 @@ export const BO_CONTRACT = {
         "constant": true
       },
       {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "erc20PoolAddress_",
+            "type": "address"
+          }
+        ],
+        "name": "getAltMaxAvailable",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "getOptionCount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getStakingTimeBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getPoolBalanceBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getOptionValueBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "base",
+            "type": "uint256"
+          }
+        ],
+        "name": "getBetSizeBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getCombinedStakingBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getPendingClaims",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "claimRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
         "inputs": [],
         "name": "defaultPriceProvider",
         "outputs": [
@@ -936,11 +1272,37 @@ export const BO_CONTRACT = {
         "inputs": [
           {
             "internalType": "address",
-            "name": "newRC_",
+            "name": "newPool_",
             "type": "address"
           }
         ],
-        "name": "setRateCalcAddress",
+        "name": "addAltPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bool",
+            "name": "nx_",
+            "type": "bool"
+          }
+        ],
+        "name": "enableRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "oldPool_",
+            "type": "address"
+          }
+        ],
+        "name": "removeAltPool",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -950,6 +1312,11 @@ export const BO_CONTRACT = {
           {
             "internalType": "address",
             "name": "newPP_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "rateCalc_",
             "type": "address"
           }
         ],
@@ -979,7 +1346,7 @@ export const BO_CONTRACT = {
             "type": "uint256"
           }
         ],
-        "name": "setMaxTime",
+        "name": "setMaxT",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -992,7 +1359,7 @@ export const BO_CONTRACT = {
             "type": "uint256"
           }
         ],
-        "name": "setMinTime",
+        "name": "setMinT",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1077,6 +1444,19 @@ export const BO_CONTRACT = {
         "type": "function"
       },
       {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "newDevFund",
+            "type": "address"
+          }
+        ],
+        "name": "transferDevFund",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
         "inputs": [],
         "name": "closeStaking",
         "outputs": [],
@@ -1107,9 +1487,54 @@ export const BO_CONTRACT = {
       {
         "inputs": [
           {
-            "internalType": "enum BinaryOptions.OptionType",
-            "name": "type_",
-            "type": "uint8"
+            "internalType": "address",
+            "name": "pair",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "max",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "currentPrice",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "t",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "k",
+            "type": "bool"
+          }
+        ],
+        "name": "getRate",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bool",
+            "name": "k_",
+            "type": "bool"
           },
           {
             "internalType": "address",
@@ -1118,7 +1543,7 @@ export const BO_CONTRACT = {
           },
           {
             "internalType": "uint256",
-            "name": "time_",
+            "name": "t_",
             "type": "uint256"
           }
         ],
@@ -1131,8 +1556,42 @@ export const BO_CONTRACT = {
       {
         "inputs": [
           {
+            "internalType": "bool",
+            "name": "k_",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "pp_",
+            "type": "address"
+          },
+          {
             "internalType": "uint256",
-            "name": "optionID",
+            "name": "t_",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "pa_",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "a_",
+            "type": "uint256"
+          }
+        ],
+        "name": "bet20",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "payable": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "oID",
             "type": "uint256"
           }
         ],
@@ -1145,7 +1604,7 @@ export const BO_CONTRACT = {
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "optionID",
+            "name": "oID",
             "type": "uint256"
           }
         ],
@@ -1157,7 +1616,7 @@ export const BO_CONTRACT = {
     ]
   },
   42: {
-    address: '0xf5e5dDd2b57597Df6f1106E35c970aE086520bC3',
+    address: '0x33EcAb6b38a723e9ECAe740C5801A8717eFF751a',
     "abi": [
       {
         "inputs": [
@@ -1232,21 +1691,21 @@ export const BO_CONTRACT = {
           },
           {
             "indexed": false,
-            "internalType": "uint256",
-            "name": "strikePrice",
-            "type": "uint256"
+            "internalType": "int256",
+            "name": "sP",
+            "type": "int256"
           },
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "lockedValue",
+            "name": "lV",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "internalType": "enum BinaryOptions.OptionType",
-            "name": "direction",
-            "type": "uint8"
+            "internalType": "bool",
+            "name": "dir",
+            "type": "bool"
           }
         ],
         "name": "Create",
@@ -1336,6 +1795,26 @@ export const BO_CONTRACT = {
           }
         ],
         "name": "allowance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "altLockedAmount",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1473,6 +1952,34 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
+        "name": "defaultRCAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "devFund",
+        "outputs": [
+          {
+            "internalType": "address payable",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
         "name": "devFundBetFee",
         "outputs": [
           {
@@ -1493,7 +2000,27 @@ export const BO_CONTRACT = {
             "type": "address"
           }
         ],
-        "name": "enabledPairs",
+        "name": "ePairs",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "ePools",
         "outputs": [
           {
             "internalType": "bool",
@@ -1534,6 +2061,40 @@ export const BO_CONTRACT = {
         "constant": true
       },
       {
+        "inputs": [],
+        "name": "fGS",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "iAL",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
         "inputs": [
           {
             "internalType": "address",
@@ -1558,8 +2119,34 @@ export const BO_CONTRACT = {
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "launchEnd",
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "lST",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "lW",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1587,7 +2174,7 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "maxTime",
+        "name": "maxT",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1601,7 +2188,27 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "minTime",
+        "name": "minT",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "nW",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1621,26 +2228,6 @@ export const BO_CONTRACT = {
             "internalType": "string",
             "name": "",
             "type": "string"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function",
-        "constant": true
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "nextWithdraw",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -1672,43 +2259,57 @@ export const BO_CONTRACT = {
         "name": "options",
         "outputs": [
           {
-            "internalType": "enum BinaryOptions.State",
-            "name": "state",
-            "type": "uint8"
-          },
-          {
             "internalType": "address payable",
             "name": "holder",
             "type": "address"
           },
           {
+            "internalType": "int256",
+            "name": "sP",
+            "type": "int256"
+          },
+          {
             "internalType": "uint256",
-            "name": "strikePrice",
+            "name": "pV",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "purchaseValue",
+            "name": "lV",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "lockedValue",
+            "name": "exp",
             "type": "uint256"
           },
           {
-            "internalType": "uint256",
-            "name": "expiration",
-            "type": "uint256"
-          },
-          {
-            "internalType": "enum BinaryOptions.OptionType",
-            "name": "optionType",
-            "type": "uint8"
+            "internalType": "bool",
+            "name": "dir",
+            "type": "bool"
           },
           {
             "internalType": "address",
-            "name": "priceProvider",
+            "name": "pP",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "aPA",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address payable",
+            "name": "",
             "type": "address"
           }
         ],
@@ -1732,12 +2333,26 @@ export const BO_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "rcAddress",
+        "name": "rewEn",
         "outputs": [
           {
-            "internalType": "address",
+            "internalType": "bool",
             "name": "",
-            "type": "address"
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "reward",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -1752,6 +2367,20 @@ export const BO_CONTRACT = {
             "internalType": "string",
             "name": "",
             "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tI",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -1840,6 +2469,172 @@ export const BO_CONTRACT = {
         "constant": true
       },
       {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "erc20PoolAddress_",
+            "type": "address"
+          }
+        ],
+        "name": "getAltMaxAvailable",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "getOptionCount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getStakingTimeBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getPoolBalanceBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getOptionValueBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "base",
+            "type": "uint256"
+          }
+        ],
+        "name": "getBetSizeBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getCombinedStakingBonus",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getPendingClaims",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "claimRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
         "inputs": [],
         "name": "defaultPriceProvider",
         "outputs": [
@@ -1857,11 +2652,37 @@ export const BO_CONTRACT = {
         "inputs": [
           {
             "internalType": "address",
-            "name": "newRC_",
+            "name": "newPool_",
             "type": "address"
           }
         ],
-        "name": "setRateCalcAddress",
+        "name": "addAltPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bool",
+            "name": "nx_",
+            "type": "bool"
+          }
+        ],
+        "name": "enableRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "oldPool_",
+            "type": "address"
+          }
+        ],
+        "name": "removeAltPool",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1871,6 +2692,11 @@ export const BO_CONTRACT = {
           {
             "internalType": "address",
             "name": "newPP_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "rateCalc_",
             "type": "address"
           }
         ],
@@ -1900,7 +2726,7 @@ export const BO_CONTRACT = {
             "type": "uint256"
           }
         ],
-        "name": "setMaxTime",
+        "name": "setMaxT",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1913,7 +2739,7 @@ export const BO_CONTRACT = {
             "type": "uint256"
           }
         ],
-        "name": "setMinTime",
+        "name": "setMinT",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1998,6 +2824,19 @@ export const BO_CONTRACT = {
         "type": "function"
       },
       {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "newDevFund",
+            "type": "address"
+          }
+        ],
+        "name": "transferDevFund",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
         "inputs": [],
         "name": "closeStaking",
         "outputs": [],
@@ -2028,9 +2867,54 @@ export const BO_CONTRACT = {
       {
         "inputs": [
           {
-            "internalType": "enum BinaryOptions.OptionType",
-            "name": "type_",
-            "type": "uint8"
+            "internalType": "address",
+            "name": "pair",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "max",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "currentPrice",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "t",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "k",
+            "type": "bool"
+          }
+        ],
+        "name": "getRate",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bool",
+            "name": "k_",
+            "type": "bool"
           },
           {
             "internalType": "address",
@@ -2039,7 +2923,7 @@ export const BO_CONTRACT = {
           },
           {
             "internalType": "uint256",
-            "name": "time_",
+            "name": "t_",
             "type": "uint256"
           }
         ],
@@ -2052,8 +2936,42 @@ export const BO_CONTRACT = {
       {
         "inputs": [
           {
+            "internalType": "bool",
+            "name": "k_",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "pp_",
+            "type": "address"
+          },
+          {
             "internalType": "uint256",
-            "name": "optionID",
+            "name": "t_",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "pa_",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "a_",
+            "type": "uint256"
+          }
+        ],
+        "name": "bet20",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "payable": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "oID",
             "type": "uint256"
           }
         ],
@@ -2066,7 +2984,7 @@ export const BO_CONTRACT = {
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "optionID",
+            "name": "oID",
             "type": "uint256"
           }
         ],
@@ -2078,10 +2996,10 @@ export const BO_CONTRACT = {
     ]
   }
 }
-// the governance/reward token
-export const BIOP_CONTRACT = {
+
+export const V2BIOP_CONTRACT = {
   1: {
-    address: "0xC3771668ac4d9C727f54dBDe11ed94acAdD5fF86",
+    address: "0xc3771668ac4d9c727f54dbde11ed94acadd5ff86",
     "abi": [
       {
         "inputs": [
@@ -2171,8 +3089,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [
@@ -2215,8 +3132,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2229,8 +3145,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2243,8 +3158,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2257,8 +3171,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [
@@ -2295,8 +3208,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2309,8 +3221,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2323,8 +3234,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [
@@ -2361,8 +3271,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2375,8 +3284,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2389,8 +3297,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2403,8 +3310,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [],
@@ -2417,8 +3323,7 @@ export const BIOP_CONTRACT = {
           }
         ],
         "stateMutability": "view",
-        "type": "function",
-        "constant": true
+        "type": "function"
       },
       {
         "inputs": [
@@ -2482,19 +3387,6 @@ export const BIOP_CONTRACT = {
           }
         ],
         "name": "updateEarlyClaim",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "updateClaim",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -2526,9 +3418,13 @@ export const BIOP_CONTRACT = {
         "type": "function"
       }
     ]
-  },
-  42: {
-    address: '0xa6a8496D127Cb1FD1858Efd921f02F098FF64B56',
+  }
+}
+
+// the governance/reward token
+export const BIOP_CONTRACT = {
+  1: {
+    address: "0x48fbf22f027438d95defc40814a0cc49570fbb5e",
     "abi": [
       {
         "inputs": [
@@ -2541,6 +3437,16 @@ export const BIOP_CONTRACT = {
             "internalType": "string",
             "name": "symbol_",
             "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "v2_",
+            "type": "address"
+          },
+          {
+            "internalType": "uint32",
+            "name": "_reserveRatio",
+            "type": "uint32"
           }
         ],
         "stateMutability": "nonpayable",
@@ -2646,6 +3552,20 @@ export const BIOP_CONTRACT = {
         "type": "function"
       },
       {
+        "inputs": [],
+        "name": "bO",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
         "inputs": [
           {
             "internalType": "address",
@@ -2667,12 +3587,12 @@ export const BIOP_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "binaryOptions",
+        "name": "binaryOptionsSet",
         "outputs": [
           {
-            "internalType": "address",
+            "internalType": "bool",
             "name": "",
-            "type": "address"
+            "type": "bool"
           }
         ],
         "stateMutability": "view",
@@ -2681,12 +3601,82 @@ export const BIOP_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "binaryOptionsSet",
+        "name": "buyFee",
         "outputs": [
           {
-            "internalType": "bool",
+            "internalType": "uint256",
             "name": "",
-            "type": "bool"
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_supply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_reserveBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "_reserveRatio",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_depositAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculatePurchaseReturn",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_supply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_reserveBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "_reserveRatio",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_sellAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculateSaleReturn",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -2732,22 +3722,14 @@ export const BIOP_CONTRACT = {
         "type": "function"
       },
       {
-        "inputs": [],
-        "name": "earlyClaims",
-        "outputs": [
+        "inputs": [
           {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
+            "internalType": "uint256",
+            "name": "_continuousTokenAmount",
+            "type": "uint256"
           }
         ],
-        "stateMutability": "view",
-        "type": "function",
-        "constant": true
-      },
-      {
-        "inputs": [],
-        "name": "earlyClaimsAvailable",
+        "name": "getContinuousBurnRefund",
         "outputs": [
           {
             "internalType": "uint256",
@@ -2760,13 +3742,19 @@ export const BIOP_CONTRACT = {
         "constant": true
       },
       {
-        "inputs": [],
-        "name": "gov",
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_reserveTokenAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "getContinuousMintReward",
         "outputs": [
           {
-            "internalType": "address",
+            "internalType": "uint256",
             "name": "",
-            "type": "address"
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -2813,12 +3801,40 @@ export const BIOP_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "owner",
+        "name": "reserveRatio",
         "outputs": [
           {
-            "internalType": "address",
+            "internalType": "uint32",
             "name": "",
-            "type": "address"
+            "type": "uint32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "sellFee",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "soldAmount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -2841,7 +3857,21 @@ export const BIOP_CONTRACT = {
       },
       {
         "inputs": [],
-        "name": "totalClaimsAvailable",
+        "name": "tCA",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tbca",
         "outputs": [
           {
             "internalType": "uint256",
@@ -2921,14 +3951,68 @@ export const BIOP_CONTRACT = {
         "type": "function"
       },
       {
+        "inputs": [],
+        "name": "v2",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "version",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "g_",
+            "type": "address"
+          }
+        ],
+        "name": "transferGovernance",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "amount",
+            "name": "newFee_",
             "type": "uint256"
           }
         ],
-        "name": "updateEarlyClaim",
+        "name": "updateBuyFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateSellFee",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -2941,7 +4025,7 @@ export const BIOP_CONTRACT = {
             "type": "uint256"
           }
         ],
-        "name": "updateClaim",
+        "name": "updateEarlyClaim",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -2960,15 +4044,748 @@ export const BIOP_CONTRACT = {
         "type": "function"
       },
       {
+        "inputs": [],
+        "name": "swapv2v3",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "continuousSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "reserveBalance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "buy",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "payable": true
+      },
+      {
         "inputs": [
           {
-            "internalType": "address payable",
-            "name": "gov_",
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "sell",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]
+  },
+  42: {
+    address: '0x316D43459ae1053c334125Dbe25A6F25973f1322',
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name_",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol_",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "v2_",
+            "type": "address"
+          },
+          {
+            "internalType": "uint32",
+            "name": "_reserveRatio",
+            "type": "uint32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "Approval",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "Transfer",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "spender",
             "type": "address"
           }
         ],
-        "name": "setupGovernance",
+        "name": "allowance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "bO",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "binaryOptionsSet",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "buyFee",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_supply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_reserveBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "_reserveRatio",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_depositAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculatePurchaseReturn",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_supply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_reserveBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint32",
+            "name": "_reserveRatio",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_sellAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculateSaleReturn",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+          {
+            "internalType": "uint8",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "subtractedValue",
+            "type": "uint256"
+          }
+        ],
+        "name": "decreaseAllowance",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_continuousTokenAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "getContinuousBurnRefund",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_reserveTokenAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "getContinuousMintReward",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "addedValue",
+            "type": "uint256"
+          }
+        ],
+        "name": "increaseAllowance",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "reserveRatio",
+        "outputs": [
+          {
+            "internalType": "uint32",
+            "name": "",
+            "type": "uint32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "sellFee",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "soldAmount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tCA",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tbca",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "v2",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "version",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "g_",
+            "type": "address"
+          }
+        ],
+        "name": "transferGovernance",
         "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateBuyFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateSellFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateEarlyClaim",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "options_",
+            "type": "address"
+          }
+        ],
+        "name": "setupBinaryOptions",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "swapv2v3",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "continuousSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "reserveBalance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "buy",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "payable": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "sell",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
         "stateMutability": "nonpayable",
         "type": "function"
       }
@@ -2979,7 +4796,7 @@ export const BIOP_CONTRACT = {
 // the opton return rate calculator
 export const RATECALC_CONTRACT = {
   1: {
-    address: "0x79bc59B174D4579CF16734864522A58Bd92eb504",
+    address: "0x85dE67979509Ad4Da0c8e57EA30dfa213156836E",
     "abi": [
       {
         "inputs": [
@@ -2992,6 +4809,21 @@ export const RATECALC_CONTRACT = {
             "internalType": "uint256",
             "name": "maxAvailable",
             "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "t",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "k",
+            "type": "bool"
           }
         ],
         "name": "rate",
@@ -3009,7 +4841,7 @@ export const RATECALC_CONTRACT = {
     ]
   },
   42: {
-    address: '0xb2160bcdAecD004E1Cf1CD77F1aeBB4C95f30558',
+    address: '0xC860964f0548FCC9f067109C14c524975AA8cc71',
     "abi": [
       {
         "inputs": [
@@ -3022,6 +4854,21 @@ export const RATECALC_CONTRACT = {
             "internalType": "uint256",
             "name": "maxAvailable",
             "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "t",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "k",
+            "type": "bool"
           }
         ],
         "name": "rate",
@@ -3040,3 +4887,1017 @@ export const RATECALC_CONTRACT = {
   }
 }
 
+export const DGOV_CONTRACT = {
+  1: {
+    address: "0xeD5d28EB886980932597D2998ca4953ccDE0422c",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "bo_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "v3_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "accessTiers_",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "total",
+            "type": "uint256"
+          }
+        ],
+        "name": "Stake",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "total",
+            "type": "uint256"
+          }
+        ],
+        "name": "Withdraw",
+        "type": "event"
+      },
+      {
+        "stateMutability": "payable",
+        "type": "fallback",
+        "payable": true
+      },
+      {
+        "inputs": [],
+        "name": "accessTiersAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "lrc",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "protocolAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "rep",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "shas",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "staked",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tokenAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "trg",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "totalStaked",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "stake",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "newSha",
+            "type": "address"
+          }
+        ],
+        "name": "delegate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "undelegate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "acc",
+            "type": "address"
+          }
+        ],
+        "name": "bRSLC",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "pendingETHRewards",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "claimETHRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "nMT_",
+            "type": "uint256"
+          }
+        ],
+        "name": "uMXOT",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newMinTime_",
+            "type": "uint256"
+          }
+        ],
+        "name": "uMNOT",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateExerciserFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateExpirerFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "oldPP_",
+            "type": "address"
+          }
+        ],
+        "name": "removeTradingPair",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newPP_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newRateCalc_",
+            "type": "address"
+          }
+        ],
+        "name": "addUpdateTradingPair",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newPool_",
+            "type": "address"
+          }
+        ],
+        "name": "addAltPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bool",
+            "name": "nx_",
+            "type": "bool"
+          }
+        ],
+        "name": "enableRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "oldPool_",
+            "type": "address"
+          }
+        ],
+        "name": "removeAltPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newLockSeconds_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updatePoolLockTime",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newBetFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateBetFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newAccessTiers_",
+            "type": "address"
+          }
+        ],
+        "name": "updateAccessTiers",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "closeStaking",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]
+  },
+  42: {
+    address: '0x308F22f30ebF1F6EF1572a440841c67DCC01DDF0',
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "bo_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "v3_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "accessTiers_",
+            "type": "address"
+          },
+          {
+            "internalType": "address payable",
+            "name": "proxy_",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "total",
+            "type": "uint256"
+          }
+        ],
+        "name": "Stake",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "total",
+            "type": "uint256"
+          }
+        ],
+        "name": "Withdraw",
+        "type": "event"
+      },
+      {
+        "stateMutability": "payable",
+        "type": "fallback",
+        "payable": true
+      },
+      {
+        "inputs": [],
+        "name": "aTA",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "lrc",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "pA",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "pX",
+        "outputs": [
+          {
+            "internalType": "address payable",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "rep",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "shas",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "staked",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "tA",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "trg",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "totalStaked",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "stake",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "newSha",
+            "type": "address"
+          }
+        ],
+        "name": "delegate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "undelegate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "acc",
+            "type": "address"
+          }
+        ],
+        "name": "bRSLC",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "pendingETHRewards",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "claimETHRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "sRTG",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newPool_",
+            "type": "address"
+          }
+        ],
+        "name": "addAltPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "nMT_",
+            "type": "uint256"
+          }
+        ],
+        "name": "uMXOT",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newMinTime_",
+            "type": "uint256"
+          }
+        ],
+        "name": "uMNOT",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateExerciserFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateExpirerFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "oldPP_",
+            "type": "address"
+          }
+        ],
+        "name": "removeTradingPair",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newPP_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newRateCalc_",
+            "type": "address"
+          }
+        ],
+        "name": "addUpdateTradingPair",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bool",
+            "name": "nx_",
+            "type": "bool"
+          }
+        ],
+        "name": "enableRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "n_",
+            "type": "uint256"
+          }
+        ],
+        "name": "enableRewards",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "oldPool_",
+            "type": "address"
+          }
+        ],
+        "name": "removeAltPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newLockSeconds_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updatePoolLockTime",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newBetFee_",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateBetFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newAccessTiers_",
+            "type": "address"
+          }
+        ],
+        "name": "updateAccessTiers",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newPA_",
+            "type": "address"
+          }
+        ],
+        "name": "updateProtocolAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "closeStaking",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]
+  }
+}

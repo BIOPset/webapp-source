@@ -122,7 +122,7 @@ class Exercise extends React.Component<any, any> {
             console.log(options[i]);
             if (options[i].returnValues) {
                 if (options[i].returnValues.id !== undefined) {// ensurese we skip other events
-                    if (options[i].returnValues.strikePrice === undefined) {
+                    if (options[i].returnValues.sP === undefined) {
                         // modifier
                         optionsObjects[options[i].returnValues.id].complete = true;
                         if (options[i].event === "Expire") {
@@ -137,9 +137,9 @@ class Exercise extends React.Component<any, any> {
                             timestamp,
                             id: options[i].returnValues.id,
                             creator: options[i].returnValues.account,
-                            strikePrice: options[i].returnValues.strikePrice,
-                            lockedValue: options[i].returnValues.lockedValue,
-                            type: options[i].returnValues.direction,
+                            strikePrice: options[i].returnValues.sP,
+                            lockedValue: options[i].returnValues.lV,
+                            type: options[i].returnValues.dir,
                             complete: false
                         }
                     }
@@ -172,7 +172,13 @@ class Exercise extends React.Component<any, any> {
             } else if (optionsObjects[id].expired) {
                 expired += 1;
             }
+
+        // tslint:disable-next-line:no-console
+        console.log(`avgValue ${avgValue}`);
             avgValue = add(avgValue, optionsObjects[id].lockedValue);
+
+        // tslint:disable-next-line:no-console
+        console.log(`avgValue after ${avgValue}`);
             sortedOptions.push(optionsObjects[id]);
         });
 
@@ -229,6 +235,7 @@ class Exercise extends React.Component<any, any> {
 
     public render() {
         const { avgValue, calls, puts, exercised, expired, pendingRequest, error, web3, options, currentPrice } = this.state;
+        
         return (
             <SStake>
 
@@ -249,15 +256,16 @@ class Exercise extends React.Component<any, any> {
                             handleExercise={(optionId: any) => this.handleExercise(optionId)}
                             currentPrice={currentPrice}
                         />
-                        <OptionVis
+                        
+                        </>
+                }
+                <OptionVis
                             calls={calls}
                             puts={puts}
                             exercised={exercised}
                             expired={expired}
                             avgValue={web3.utils.fromWei(`${avgValue}`, "ether")}
                         />
-                        </>
-                }
 
 
             </SStake>

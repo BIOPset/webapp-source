@@ -66,7 +66,7 @@ class Landing extends React.Component<any, any> {
                         </div>
                         <div >
                             <h5>3. Bet 📈📉</h5>
-                            <p>Win 190% betting on 1 hour binary options on the price of ETH.</p>
+                            <p>Win 188% betting on 1 hour binary options on the price of ETH.</p>
                         </div>
                     </SReasons>
 

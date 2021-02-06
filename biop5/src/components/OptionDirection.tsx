@@ -10,7 +10,7 @@ const OptionDirection = (props: any) => {
     // tslint:disable-next-line:no-console
     console.log(`option type ${optionType}, typ ${typeof(optionType)}`);
 
-    if (optionType === "1") {
+    if (optionType) {
         return ( 
         <div style={{display: 'flex', flexDirection: 'row'}}>
 

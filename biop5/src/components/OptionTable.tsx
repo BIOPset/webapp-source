@@ -35,13 +35,13 @@ const OptionTable = (props: any) => {
         } else if (option.timestamp + (3600 * 1000) < new Date().getTime()) {
             // option ready to expire
             return <Button onClick={() => handleExpire(option.id)}>Expire</Button>;
-        } else if (option.type === "0" && option.strikePrice > currentPrice) {
+        } else if (option.type === false && option.strikePrice > currentPrice) {
             // put option ready to exercise
 
             // tslint:disable-next-line:no-console
             console.log(`${option.strikePrice} stik ${currentPrice} current`);
             return <Button onClick={() => handleExercise(option.id)}>Exercise</Button>;
-        } else if (option.type === "1" && option.strikePrice < currentPrice) {
+        } else if (option.type === true && option.strikePrice < currentPrice) {
             // call option ready to exercise
             // tslint:disable-next-line:no-console
             console.log(`${option.strikePrice} stik ${currentPrice} current`);
@@ -72,6 +72,10 @@ const OptionTable = (props: any) => {
 
     const {options, web3, showFee} = props;
     if (options.length > 0) {
+        // tslint:disable-next-line:no-console
+        console.log("showing options!!!");
+        // tslint:disable-next-line:no-console
+        console.log(options);
         return (
             <STable>
                 <thead> 
