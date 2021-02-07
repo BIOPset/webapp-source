@@ -764,6 +764,24 @@ export function getPossiblePayout(amount: string, web3: any, chainId: number) {
   })
 }
 
+export function getTotalInterchange( web3: any, chainId: number) {
+  return new Promise(async (resolve, reject) => {
+    const bin = getBOContract(chainId, web3);
+    await bin.methods
+      .tI()
+      .call(
+        { from: zeroAddress },
+        (err: any, data: any) => {
+          if (err) {
+            reject(err)
+          }
+
+          resolve(data)
+        }
+      )
+  })
+}
+
 export function sendExpire(address: string, optionId: any, chainId: number, web3: any, onComplete: any) {
   return new Promise(async (resolve, reject) => {
     const bin = getBOContract(chainId, web3);

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { initiateSwapIfAvailable, sendExercise, sendExpire, callPoolTotalSupply, getLatestPrice, callPoolStakedBalance, callPoolMaxAvailable, getRate, blockTimestamp, getOptionCreation, getOptionCloses } from "../helpers/web3";
+import { initiateSwapIfAvailable, sendExercise, sendExpire, callPoolTotalSupply, getLatestPrice, callPoolStakedBalance, callPoolMaxAvailable, getRate, blockTimestamp, getOptionCreation, getOptionCloses, getTotalInterchange } from "../helpers/web3";
 
 
 // import Right from "../assets/right.png";
@@ -120,6 +120,7 @@ interface IBetState {
     priceInterval: any;
     optionsInterval: any;
     lastBetCall: boolean;
+    totalInterchange: number;
 }
 
 const INITIAL_STATE: IBetState = {
@@ -138,7 +139,8 @@ const INITIAL_STATE: IBetState = {
     currentPrice: 0,
     priceInterval: null,
     optionsInterval: null,
-    lastBetCall: false
+    lastBetCall: false,
+    totalInterchange: 0
 };
 class Bet extends React.Component<any, any> {
     // @ts-ignore
@@ -160,6 +162,7 @@ class Bet extends React.Component<any, any> {
         this.getStaked();
         this.handleBetAmountUpdate({ target: { value: "0.1" } });
         this.loadUserOptions();
+        this.getTI();
 
         this.loadCurrentPrice();
 
@@ -173,6 +176,16 @@ class Bet extends React.Component<any, any> {
                 this.loadUserOptions()
             }, 30000)
         });
+    }
+
+    public async getTI() {
+
+        const { chainId, web3 } = this.state;
+        const ti = await getTotalInterchange(web3, chainId);
+
+        // tslint:disable-next-line:no-console
+        console.log(`interschange is ${ti}`);
+        this.setState({ totalInterchange: ti });
     }
 
     public async loadCurrentPrice() {
@@ -458,7 +471,7 @@ class Bet extends React.Component<any, any> {
 
 
     public render() {
-        const { web3, currentPrice, userOptions, pendingRequest, error, hasBet, lastBetCall } = this.state;
+        const { totalInterchange, web3, currentPrice, userOptions, pendingRequest, error, hasBet, lastBetCall } = this.state;
         // const { openExercise } = this.props;
         return (
             <SBet>
@@ -478,6 +491,8 @@ class Bet extends React.Component<any, any> {
                             {this.renderBetApprove()}
                         </SInterface>
                 }
+                <SHelper>Total Value Interchanged: {formatFixedDecimals(web3.utils.fromWei(`${totalInterchange}`, "ether"), 8)} ETH</SHelper>
+
                 {
                     hasBet ?
                         <SHelper>Share your option with the world:

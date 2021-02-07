@@ -42,17 +42,8 @@ const OptionVis = (props: any) => {
    } 
 
    function processWinLossData() {
-       const {exercised, expired} = props;
-   /*  let exercised = 0;
-    let expired = 0;
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].expired) {
-            expired = expired + 1;
-        } else if (options[i].exercised) {
-            exercised = exercised + 1;
-        }
-    } */
-    return {
+      const {exercised, expired} = props;
+      return {
         labels: ['Exercised', 'Expired'],
         datasets: [
           {
