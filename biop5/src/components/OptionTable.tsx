@@ -27,9 +27,9 @@ const OptionTable = (props: any) => {
     function renderExpireExercise(option: any) {
         const { currentPrice, handleExercise, handleExpire } = props;
         if (option.expired) {
-            return<Button disabled outline={true} color={`rgb(${colors.black})`}>Expired</Button>;
+            return <b>Loss</b>;
         } else if (option.exercised) {
-            return <Button disabled outline={true} color={`rgb(${colors.black})`}>Exercised</Button>;
+            return <b>Win</b>;
         } if (option.complete) {
             return <Button disabled outline={true} color={`rgb(${colors.black})`}>Completed</Button>;
         } else if (option.timestamp + (3600 * 1000) < new Date().getTime()) {
